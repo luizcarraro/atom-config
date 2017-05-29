@@ -1,0 +1,75 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/tmp/d-117310-17904-1dajvkb/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/tmp/d-117310-17904-1dajvkb/package.tgz",
+        "spec": "/tmp/d-117310-17904-1dajvkb/package.tgz",
+        "type": "local"
+      },
+      "/tmp/apm-install-dir-117310-17904-bpd69r"
+    ]
+  ],
+  "_from": "../d-117310-17904-1dajvkb/package.tgz",
+  "_id": "sublime-block-comment@0.5.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/sublime-block-comment",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/tmp/d-117310-17904-1dajvkb/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/tmp/d-117310-17904-1dajvkb/package.tgz",
+    "spec": "/tmp/d-117310-17904-1dajvkb/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117310-17904-1dajvkb/package.tgz",
+  "_shasum": "8be61ac7e0a3f9d84f3ea05b521eb31586cc0f02",
+  "_shrinkwrap": null,
+  "_spec": "/tmp/d-117310-17904-1dajvkb/package.tgz",
+  "_where": "/tmp/apm-install-dir-117310-17904-bpd69r",
+  "activationCommands": {
+    "atom-text-editor:not([mini])": [
+      "sublime-block-comment:toggle"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/UltCombo/atom-sublime-block-comment/issues"
+  },
+  "dependencies": {
+    "core-js": "^1.2.0"
+  },
+  "description": "Toggle block comments like in Sublime Text.",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/UltCombo/atom-sublime-block-comment#readme",
+  "keywords": [
+    "block",
+    "comment",
+    "block-comment",
+    "sublime",
+    "text",
+    "sublime-text"
+  ],
+  "license": "MIT",
+  "main": "./lib/sublime-block-comment",
+  "name": "sublime-block-comment",
+  "optionalDependencies": {},
+  "readme": "# Sublime Block Comments for Atom\n\nAn Atom Editor plugin for toggling block comments, inspired by Sublime Text.\n\n# Install\n\n```\napm install sublime-block-comment\n```\n\nOr look for `sublime-block-comment` in your Atom settings' Install tab. :smiley:\n\n# Features\n\n- Select code and hit the keybinding to place a block comment around it.\n- Place the cursor anywhere inside a block comment and hit the keybinding to uncomment it.\n- Hit the keybinding with an empty selection to create an empty block comment, ready to type.\n- Optionally pad the selection with whitespace when commenting (you can enable this in the package settings).\n- Supports multiple cursors.\n\n# Keymap\n\n- `Ctrl-?` (`Ctrl-Shift-;` for ABNT2 keyboards on Windows/Linux): Toggle block comments.\n\n# Contributing\n\nContributions are very welcome!\n\nPlease report any issue you find, and feel free to send pull requests to add support for more languages. :smiley:\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UltCombo/atom-sublime-block-comment.git"
+  },
+  "version": "0.5.1"
+}
