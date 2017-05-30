@@ -3,7 +3,7 @@
     enabled: true
   core:
     themes: [
-      "one-dark-ui"
+      "atom-dark-ui"
       "atom-sublime-monokai-syntax"
     ]
   editor:
