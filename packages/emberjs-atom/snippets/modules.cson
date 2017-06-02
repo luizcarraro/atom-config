@@ -1,0 +1,168 @@
+'.source.js':
+
+  'Ember Route':
+    'prefix': 'route'
+    'body': """
+      import Ember from 'ember';\n
+      export default Ember.Route.extend({
+        model: function() {
+          ${1:// body}
+        },
+      });
+    """
+
+  'Ember Controller':
+    'prefix': 'controller'
+    'body': """
+      import Ember from 'ember';\n
+      export default Ember.Controller.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember Service':
+    'prefix': 'service'
+    'body': """
+      import Ember from 'ember';\n
+      export default Ember.Service.extend({
+        ${1:// body}
+      });
+    """
+
+
+  'Ember Component':
+    'prefix': 'component'
+    'body': """
+      import Ember from 'ember';\n
+      export default Ember.Component.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember Mixin':
+    'prefix': 'mixin'
+    'body': """
+      import Ember from 'ember';\n
+      export default Ember.Mixin.create({
+        ${1:// body}
+      });
+    """
+
+  'Ember Object':
+    'prefix': 'object'
+    'body': """
+      import Ember from 'ember';\n
+      export default Ember.Object.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember Helper':
+    'prefix': 'helper'
+    'body': """
+      import Ember from 'ember';\n
+      export default Ember.Helper.extend({
+        compute: function() {
+          ${1:// body}
+        }
+      });
+    """
+
+  'Ember Model':
+    'prefix': 'model'
+    'body': """
+      import Model from 'ember-data/model';
+      import attr from 'ember-data/attr';\n
+      export default Model.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember REST Adapter':
+    'prefix': 'adapter'
+    'body': """
+      import DS from 'ember-data';\n
+      export default DS.RESTAdapter.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember Active Model Adapter':
+    'prefix': 'active-adapter'
+    'body': """
+      import DS from 'ember-data';
+      export default DS.ActiveModelAdapter.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember JSON API Adapter':
+    'prefix': 'jsonapi-adapter'
+    'body': """
+      import JSONAPIAdapter from 'ember-data/adapters/json-api';
+
+      export default JSONAPIAdapter.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember REST Serializer':
+    'prefix': 'serializer'
+    'body': """
+      import DS from 'ember-data';
+      export default DS.RESTSerializer.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember Active Model Serializer':
+    'prefix': 'active-serializer'
+    'body': """
+      import DS from 'ember-data';
+      export default DS.ActiveModelSerializer.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember JSON API Serializer':
+    'prefix': 'jsonapi-serializer'
+    'body': """
+      import DS from 'ember-data';
+      export default DS.JSONAPISerializer.extend({
+        ${1:// body}
+      });
+    """
+
+  'Ember Transform Serializer':
+    'prefix': 'transform'
+    'body': """
+      import Transform from 'ember-data/transform';\n
+      export default Transform.extend({
+        deserialize: function(serialized) {
+            return serialized / 100;
+          },
+
+          serialize: function(deserialized) {
+            return deserialized * 100;
+          }
+      });
+    """
+
+  'Ember Initializer':
+    'prefix': 'initializer'
+    'body': """
+      export default {
+        name: '${1:name}',
+        initialize: function() {
+          ${2:// body}
+        }
+      };
+    """
+
+  'Ember Utility':
+    'prefix': 'utility'
+    'body': """
+      export default function ${1:myUtility}() {
+        ${2:// body}
+      };
+    """

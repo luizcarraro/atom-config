@@ -7,7 +7,6 @@
       "atom-sublime-monokai-syntax"
     ]
   editor:
-    fontSize: 12
     invisibles: {}
     showIndentGuide: true
     softWrap: true
@@ -15,6 +14,8 @@
     userId: "261da115-ea2a-459b-b584-1defaf3832a9"
   "git-diff":
     showIconsInEditorGutter: true
+  "nav-panel-plus":
+    leftPanel: true
   "one-dark-ui":
     layoutMode: "Compact"
   "seti-ui":
