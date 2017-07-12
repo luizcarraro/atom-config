@@ -1,0 +1,82 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/tmp/d-117512-16318-13jqdlk/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/tmp/d-117512-16318-13jqdlk/package.tgz",
+        "spec": "/tmp/d-117512-16318-13jqdlk/package.tgz",
+        "type": "local"
+      },
+      "/tmp/apm-install-dir-117512-16318-102iz24"
+    ]
+  ],
+  "_from": "../d-117512-16318-13jqdlk/package.tgz",
+  "_id": "auto-update-plus@0.2.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/auto-update-plus",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/tmp/d-117512-16318-13jqdlk/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/tmp/d-117512-16318-13jqdlk/package.tgz",
+    "spec": "/tmp/d-117512-16318-13jqdlk/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-117512-16318-13jqdlk/package.tgz",
+  "_shasum": "1fe1df5ed36f6cbf0a406c751e0d458b1d6d096c",
+  "_shrinkwrap": null,
+  "_spec": "/tmp/d-117512-16318-13jqdlk/package.tgz",
+  "_where": "/tmp/apm-install-dir-117512-16318-102iz24",
+  "bugs": {
+    "url": "https://github.com/idleberg/atom-auto-update-plus/issues"
+  },
+  "contributors": [
+    {
+      "name": "Jan T. Sott",
+      "url": "https://github.com/idleberg"
+    },
+    {
+      "name": "Yuji Nakayama",
+      "url": "https://github.com/yujinakayama"
+    }
+  ],
+  "dependencies": {},
+  "description": "Keep your Atom packages up to date.",
+  "devDependencies": {
+    "coffeelint-stylish": "^0.1.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-coffeelint": "^0.6.0",
+    "gulp-debug": "^3.0.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-jsonlint": "^1.2.0",
+    "gulp-lesshint": "^2.1.0",
+    "jshint": "^2.9.4"
+  },
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/idleberg/atom-auto-update-plus#readme",
+  "license": "MIT",
+  "main": "./lib/main",
+  "name": "auto-update-plus",
+  "optionalDependencies": {},
+  "readme": "# auto-update-plus\n\n[![apm](https://img.shields.io/apm/l/auto-update-plus.svg?style=flat-square)](https://atom.io/packages/auto-update-plus)\n[![apm](https://img.shields.io/apm/v/auto-update-plus.svg?style=flat-square)](https://atom.io/packages/auto-update-plus)\n[![apm](https://img.shields.io/apm/dm/auto-update-plus.svg?style=flat-square)](https://atom.io/packages/auto-update-plus)\n[![Travis](https://img.shields.io/travis/idleberg/atom-auto-update-plus.svg?style=flat-square)](https://travis-ci.org/idleberg/atom-auto-update-plus)\n[![David](https://img.shields.io/david/dev/idleberg/atom-auto-update-plus.svg?style=flat-square)](https://david-dm.org/idleberg/atom-auto-update-plus?type=dev)\n\nKeeps your Atom packages up to date.\n\nThis package is a fork of [auto-update-packages](https://github.com/yujinakayama/atom-auto-update-packages), the key differences are the following:\n\n* OS-independent Atom notifications\n* localStorage for settings\n* inclusion/exclusion of specific packages\n* more to come!\n\n## Installation\n\nInstall `auto-update-plus` from Atom's [Package Manager](http://flight-manual.atom.io/using-atom/sections/atom-packages/) or the command-line equivalent:\n\n`$ apm install auto-update-plus`\n\n### Using Git\n\nChange to your Atom packages directory:\n\n```bash\n# Windows\n$ cd %USERPROFILE%\\.atom\\packages\n\n# Linux & macOS\n$ cd ~/.atom/packages/\n```\n\nClone the repository as `auto-update-plus`:\n\n```bash\n$ git clone https://github.com/idleberg/atom-auto-update-plus auto-update-plus\n```\n\n## Usage\n\nThis package automatically checks for package updates every 6 hours by default. If any updates are available, it installs them and notifies you. You can force an update from the Packages menu or the command palette.\n\n## License\n\nThis work is licensed under the [The MIT License](LICENSE.md).\n\n## Donate\n\nYou are welcome support this project using [Flattr](https://flattr.com/submit/auto?user_id=idleberg&url=https://github.com/idleberg/atom-auto-update-plus) or Bitcoin `17CXJuPsmhuTzFV2k4RKYwpEHVjskJktRd`\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idleberg/atom-auto-update-plus.git"
+  },
+  "scripts": {
+    "test": "gulp lint"
+  },
+  "version": "0.2.0"
+}
