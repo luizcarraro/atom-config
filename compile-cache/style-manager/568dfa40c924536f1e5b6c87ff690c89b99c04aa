@@ -1,0 +1,1 @@
+{"source":"atom-text-editor .syntax--meta.syntax--delimiter.syntax--period,\natom-text-editor .syntax--keyword.syntax--operator.syntax--assignment.syntax--js,\natom-text-editor .syntax--variable.syntax--language.syntax--js {\n  color: white !important;\n}\n.tree-view {\n  background-color: #272822;\n  font-size: 5pt !important;\n}\n"}

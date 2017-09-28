@@ -27,9 +27,11 @@ const assert = require("assert"),
     Rules = require("./rules"),
     timing = require("./timing"),
     astUtils = require("./ast-utils"),
+    pkg = require("../package.json"),
+    SourceCodeFixer = require("./util/source-code-fixer");
 
-    pkg = require("../package.json");
-
+const debug = require("debug")("eslint:linter");
+const MAX_AUTOFIX_PASSES = 10;
 
 //------------------------------------------------------------------------------
 // Typedefs
@@ -68,8 +70,8 @@ function parseBooleanConfig(string, comment) {
         let value;
 
         if (pos !== -1) {
-            value = name.substring(pos + 1, name.length);
-            name = name.substring(0, pos);
+            value = name.slice(pos + 1);
+            name = name.slice(0, pos);
         }
 
         items[name] = {
@@ -336,7 +338,7 @@ function modifyConfigsFromComments(filename, ast, config, linterContext) {
         const match = /^(eslint(-\w+){0,3}|exported|globals?)(\s|$)/.exec(value);
 
         if (match) {
-            value = value.substring(match.index + match[1].length);
+            value = value.slice(match.index + match[1].length);
 
             if (comment.type === "Block") {
                 switch (match[1]) {
@@ -453,8 +455,8 @@ function normalizeEcmaVersion(ecmaVersion, isModule) {
  */
 function prepareConfig(config, envContext) {
     config.globals = config.globals || {};
-    const copiedRules = Object.assign({}, defaultConfig.rules);
-    let parserOptions = Object.assign({}, defaultConfig.parserOptions);
+    const copiedRules = {};
+    let parserOptions = {};
 
     if (typeof config.rules === "object") {
         Object.keys(config.rules).forEach(k => {
@@ -517,8 +519,11 @@ function createStubRule(message) {
      */
     function createRuleModule(context) {
         return {
-            Program(node) {
-                context.report(node, message);
+            Program() {
+                context.report({
+                    loc: { line: 1, column: 0 },
+                    message
+                });
             }
         };
     }
@@ -1185,6 +1190,77 @@ class Linter extends EventEmitter {
     getDeclaredVariables(node) {
         return (this.scopeManager && this.scopeManager.getDeclaredVariables(node)) || [];
     }
+
+    /**
+     * Performs multiple autofix passes over the text until as many fixes as possible
+     * have been applied.
+     * @param {string} text The source text to apply fixes to.
+     * @param {Object} config The ESLint config object to use.
+     * @param {Object} options The ESLint options object to use.
+     * @param {string} options.filename The filename from which the text was read.
+     * @param {boolean} options.allowInlineConfig Flag indicating if inline comments
+     *      should be allowed.
+     * @param {boolean|Function} options.fix Determines whether fixes should be applied
+     * @returns {Object} The result of the fix operation as returned from the
+     *      SourceCodeFixer.
+     */
+    verifyAndFix(text, config, options) {
+        let messages = [],
+            fixedResult,
+            fixed = false,
+            passNumber = 0;
+        const debugTextDescription = options && options.filename || `${text.slice(0, 10)}...`;
+        const shouldFix = options && options.fix || true;
+
+        /**
+         * This loop continues until one of the following is true:
+         *
+         * 1. No more fixes have been applied.
+         * 2. Ten passes have been made.
+         *
+         * That means anytime a fix is successfully applied, there will be another pass.
+         * Essentially, guaranteeing a minimum of two passes.
+         */
+        do {
+            passNumber++;
+
+            debug(`Linting code for ${debugTextDescription} (pass ${passNumber})`);
+            messages = this.verify(text, config, options);
+
+            debug(`Generating fixed text for ${debugTextDescription} (pass ${passNumber})`);
+            fixedResult = SourceCodeFixer.applyFixes(this.getSourceCode(), messages, shouldFix);
+
+            // stop if there are any syntax errors.
+            // 'fixedResult.output' is a empty string.
+            if (messages.length === 1 && messages[0].fatal) {
+                break;
+            }
+
+            // keep track if any fixes were ever applied - important for return value
+            fixed = fixed || fixedResult.fixed;
+
+            // update to use the fixed output instead of the original text
+            text = fixedResult.output;
+
+        } while (
+            fixedResult.fixed &&
+            passNumber < MAX_AUTOFIX_PASSES
+        );
+
+        /*
+         * If the last result had fixes, we need to lint again to be sure we have
+         * the most up-to-date information.
+         */
+        if (fixedResult.fixed) {
+            fixedResult.messages = this.verify(text, config, options);
+        }
+
+        // ensure the last result properly reflects if fixes were done
+        fixedResult.fixed = fixed;
+        fixedResult.output = text;
+
+        return fixedResult;
+    }
 }
 
 // methods that exist on SourceCode object
@@ -1215,13 +1291,18 @@ const externalMethods = {
 Object.keys(externalMethods).forEach(methodName => {
     const exMethodName = externalMethods[methodName];
 
-    // All functions expected to have less arguments than 5.
-    Linter.prototype[methodName] = function(a, b, c, d, e) {
-        if (this.sourceCode) {
-            return this.sourceCode[exMethodName](a, b, c, d, e);
-        }
-        return null;
-    };
+    // Applies the SourceCode methods to the Linter prototype
+    Object.defineProperty(Linter.prototype, methodName, {
+        value() {
+            if (this.sourceCode) {
+                return this.sourceCode[exMethodName].apply(this.sourceCode, arguments);
+            }
+            return null;
+        },
+        configurable: true,
+        writable: true,
+        enumerable: false
+    });
 });
 
 module.exports = Linter;

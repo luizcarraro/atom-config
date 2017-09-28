@@ -1,3 +1,36 @@
+# v1.8.6 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.8.6)
+
+- remove activation event
+
+# v1.8.5 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.8.5)
+
+- modify event output
+
+# v1.8.4 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.8.4)
+
+- fix require
+
+# v1.8.3 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.8.3)
+
+- remove activate/deactivate events
+
+# v1.8.2 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.8.2)
+
+- fix package name
+
+# v1.8.1 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.8.1)
+
+- syntax fixes
+
+# v1.8.0 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.8.0)
+
+- add metrics support
+
+# v1.7.0 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.7.0)
+
+- add support for tree-view
+- update `devDependencies`
+
 # v1.6.1 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.6.1)
 
 - use more generic `Browse:Application Folder` name

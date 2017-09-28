@@ -1,4 +1,7 @@
 "*":
+  "activate-power-mode":
+    comboMode:
+      enabled: false
   "atom-beautify":
     general:
       _analyticsUserId: "d6496548-6976-4eae-85a9-2da29055ac04"
@@ -10,6 +13,7 @@
   core:
     disabledPackages: [
       "text-manipulation"
+      "activate-power-mode"
     ]
     telemetryConsent: "limited"
     themes: [
@@ -17,7 +21,7 @@
       "atom-sublime-monokai-syntax"
     ]
   editor:
-    fontSize: 16
+    fontSize: 11
     invisibles: {}
     showIndentGuide: true
     softWrap: true
@@ -35,3 +39,6 @@
     font: "Default Atom Font"
   "slim-dark-ui":
     layoutMode: "Compact"
+  "trailing-spaces":
+    enableForCursorLines: true
+  "tree-view": {}

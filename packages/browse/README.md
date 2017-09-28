@@ -45,7 +45,7 @@ Run any of the following commands from the [Command Palette](https://atom.io/doc
 * `Browse: Reveal file`
 * `Browse: Reveal All Open Files`
 * `Browse: Project Folder(s)`
-* `Browse: App Folder`
+* `Browse: Application Folder`
 
 All of these commands can also be accessed from the *“Packages”* menu and the context menu. Lastly, the [package-developer-toolbar](https://github.com/idleberg/atom-package-developer-toolbar) provides a graphical user interface for most of these commands.
 
@@ -68,6 +68,10 @@ Also in `config.cson`, you can activate Atom info notifications for visual feedb
 "browse":
   notify: true
 ```
+
+## Metrics
+
+With Atom's default [`metrics`](https://atom.io/packages/metrics) package enabled, this package sends anonymized usage statistics to Google Analytics. This is limited to the name of the methods called by the user. This helps me getting an understanding how this package is used. If you don't want this, you probably already disabled the `metrics` package. Otherwise, please do.
 
 ## License
 

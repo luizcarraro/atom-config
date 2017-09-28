@@ -1,5 +1,4 @@
 { name } = require "../package.json"
-{ CompositeDisposable } = require "atom"
 
 module.exports = BrowsePackages =
   config:
@@ -17,6 +16,7 @@ module.exports = BrowsePackages =
 
   activate: ->
     # Events subscribed to in Atom's system can be easily cleaned up with a CompositeDisposable
+    { CompositeDisposable } = require "atom"
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
@@ -25,6 +25,7 @@ module.exports = BrowsePackages =
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:project-folders": => @browseProjects()
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:reveal-file": => @revealFile()
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:reveal-all-open-files": => @revealFiles()
+    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:reveal-file-from-treeview": => @revealFileFromTreeview()
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:application-folder": => @appFolder()
 
   deactivate: ->
@@ -32,6 +33,8 @@ module.exports = BrowsePackages =
     @subscriptions = null
 
   appFolder: ->
+    require("./ga").sendEvent name, "application-folder"
+
     { platform } = require "os"
     { dirname, join, resolve } = require "path"
 
@@ -47,6 +50,8 @@ module.exports = BrowsePackages =
     @openFolder(appFolder)
 
   browsePackages: ->
+    require("./ga").sendEvent name, "packages-folder"
+
     { accessSync, F_OK } = require "fs"
 
     packageDirs = atom.packages.getPackageDirPaths()
@@ -62,20 +67,22 @@ module.exports = BrowsePackages =
       @openFolder(packageDir)
 
   revealFile: ->
-    # Get parent folder of active file
+    require("./ga").sendEvent name, "reveal-file"
+
     editor = atom.workspace.getActivePaneItem()
 
     if editor?.constructor.name is "TextEditor" or editor?.constructor.name is "ImageEditor"
       file = if editor?.buffer?.file then editor.buffer.file else if editor?.file then editor.file
-      
+
       if file?.path
         @selectFile(file.path)
         return
-    
+
     atom.notifications.addWarning("**#{name}**: No active file", dismissable: false)
 
   revealFiles: ->
-    # Get all open file
+    require("./ga").sendEvent name, "reveal-all-open-files"
+
     editors = atom.workspace.getPaneItems()
 
     if editors.length > 0
@@ -93,7 +100,29 @@ module.exports = BrowsePackages =
 
     atom.notifications.addWarning("**#{name}**: No open files", dismissable: false)
 
+  revealFileFromTreeview: ->
+    require("./ga").sendEvent name, "reveal-file-from-treeview"
+
+    panes = atom.workspace.getPaneItems()
+
+    if panes.length > 0
+      count = 0
+      for pane in panes
+        continue unless pane.constructor.name is "TreeView"
+
+        file = pane.selectedPath
+
+        if file?
+          @selectFile(file)
+          return
+
+      return if count > 0
+
+    atom.notifications.addWarning("**#{name}**: No selected files", dismissable: false)
+
   browseProjects: ->
+    require("./ga").sendEvent name, "project-folders"
+
     { accessSync, F_OK } = require "fs"
 
     projects = atom.project.getPaths()
@@ -115,6 +144,8 @@ module.exports = BrowsePackages =
       @openFolder(project)
 
   browseConfig: ->
+    require("./ga").sendEvent name, "configuration-folder"
+
     { accessSync, F_OK } = require "fs"
     { dirname } = require "path"
 
@@ -133,6 +164,8 @@ module.exports = BrowsePackages =
       @openFolder(configPath)
 
   selectFile: (path) ->
+    require("./ga").sendEvent name, "configuration-folder"
+
     { basename } = require "path"
 
     # Custom file manager

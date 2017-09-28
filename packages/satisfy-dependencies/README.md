@@ -16,6 +16,8 @@ Install `satisfy-dependencies` from Atom's [Package Manager](http://flight-manua
 
 `$ apm install satisfy-dependencies`
 
+**Note:** Installation might take a bit longer than what you're used to, building binaries takes its time
+
 ### Using Git
 
 Change to your Atom packages directory:
@@ -39,8 +41,10 @@ $ git clone https://github.com/idleberg/atom-satisfy-dependencies satisfy-depend
 Run any of the following commands from the [Command Palette](https://atom.io/docs/latest/getting-started-atom-basics#command-palette):
 
 * `Satisfy Dependencies: All`
+* `Satisfy Dependencies: Atom Packages`
+* `Satisfy Dependencies: Node Packages`
 
-By default, Node dependencies are not satisfied. This can be changed in the package settings.
+**Note:** In the package settings you specify your preferred package manager to install Node dependencies.
 
 ## License
 
