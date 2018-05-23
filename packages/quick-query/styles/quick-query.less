@@ -1,0 +1,83 @@
+@import "ui-variables";
+
+/*
+* Modal
+*/
+
+.quick-query-modal-message{
+	padding-right: 10px;
+	span.icon-x{
+		position: absolute;
+		top: 4px;
+		right: 0;
+		color: @overlay-border-color;
+	}
+	span.icon-clippy{
+		margin-left: 5px;
+		cursor: pointer;
+	}
+}
+
+atom-panel.modal:hover .quick-query-modal-message span.icon-clippy{
+	animation: in 0.8s linear 0s;
+	@keyframes in{ from{opacity: 0; }to{opacity: 1;}}
+}
+
+atom-panel.modal:not(:hover) .quick-query-modal-message span.icon-clippy{
+	opacity: 0;
+}
+
+atom-panel.modal:not(:hover) .quick-query-modal-message.animated span.icon-clippy{
+	animation: out 0.8s linear 0s;
+	@keyframes out{ from{opacity: 1; }to{opacity: 0;}}
+}
+
+/*
+* Editor
+*/
+
+#quick-query-default-is-null{
+	border-width: 1px;
+	border-style: solid;
+	border-color: @input-border-color;
+	height: @component-line-height;
+	padding: @component-line-height / 5;
+	border-radius: 2px;
+	font-style: italic;
+}
+
+/*
+	Bootstrap grid system was removed in atom v1.10
+*/
+.dialog.quick-query-connect,
+.quick-query-editor{
+	.col-sm-3, .col-sm-9 , .col-sm-6, .col-sm-12{
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	.row{
+		clear: both;
+		@media (min-width: 544px) {
+			.col-sm-1{
+				float: left;
+				width: 8%;
+			}
+			.col-sm-2{
+				float: left;
+				width: 16%;
+			}
+			.col-sm-3{
+				float: left;
+				width: 25%;
+			}
+			.col-sm-9{
+				float: left;
+				width: 75%;
+			}
+			.col-sm-6{
+				float: left;
+				width: 50%;
+			}
+		}
+	}
+}

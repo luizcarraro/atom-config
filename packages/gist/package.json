@@ -2,40 +2,39 @@
   "_args": [
     [
       {
-        "raw": "/tmp/d-117519-1362-15dsnz1/package.tgz",
+        "raw": "/tmp/d-11821-15710-1iq8wr0.9dro4j9k9/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/tmp/d-117519-1362-15dsnz1/package.tgz",
-        "spec": "/tmp/d-117519-1362-15dsnz1/package.tgz",
+        "rawSpec": "/tmp/d-11821-15710-1iq8wr0.9dro4j9k9/package.tgz",
+        "spec": "/tmp/d-11821-15710-1iq8wr0.9dro4j9k9/package.tgz",
         "type": "local"
       },
-      "/tmp/apm-install-dir-117519-1362-me902v"
+      "/tmp/apm-install-dir-11821-15710-18zvsot.n2pv31sjor"
     ]
   ],
-  "_from": "../d-117519-1362-15dsnz1/package.tgz",
-  "_id": "gist@1.0.0",
+  "_from": "../d-11821-15710-1iq8wr0.9dro4j9k9/package.tgz",
+  "_id": "gist@1.1.0",
   "_inCache": true,
-  "_installable": true,
   "_location": "/gist",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/tmp/d-117519-1362-15dsnz1/package.tgz",
+    "raw": "/tmp/d-11821-15710-1iq8wr0.9dro4j9k9/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/tmp/d-117519-1362-15dsnz1/package.tgz",
-    "spec": "/tmp/d-117519-1362-15dsnz1/package.tgz",
+    "rawSpec": "/tmp/d-11821-15710-1iq8wr0.9dro4j9k9/package.tgz",
+    "spec": "/tmp/d-11821-15710-1iq8wr0.9dro4j9k9/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-117519-1362-15dsnz1/package.tgz",
-  "_shasum": "33b49e6f048f341b478bc33f239fe4b870513cbc",
+  "_resolved": "file:../d-11821-15710-1iq8wr0.9dro4j9k9/package.tgz",
+  "_shasum": "faf35662012be80c48cae0e56b09b7e9f977a066",
   "_shrinkwrap": null,
-  "_spec": "/tmp/d-117519-1362-15dsnz1/package.tgz",
-  "_where": "/tmp/apm-install-dir-117519-1362-me902v",
+  "_spec": "/tmp/d-11821-15710-1iq8wr0.9dro4j9k9/package.tgz",
+  "_where": "/tmp/apm-install-dir-11821-15710-18zvsot.n2pv31sjor",
   "activationCommands": {
     "atom-text-editor:not([mini])": [
       "gist:create-public",
@@ -114,5 +113,5 @@
     "type": "git",
     "url": "git+https://github.com/aki77/atom-gist.git"
   },
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

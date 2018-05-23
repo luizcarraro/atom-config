@@ -1,3 +1,39 @@
+# v1.10.6 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.10.6)
+
+- fix variable name
+
+# v1.10.5 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.10.5)
+
+- reduce whitespace
+- fix `package.json`
+
+# v1.10.4 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.10.4)
+
+- remove unused dependency
+
+# v1.10.3 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.10.3)
+
+- fix loading wrong dependency
+
+# v1.10.2 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.10.2)
+
+- change notification wording
+- add missing context menu entries
+
+# v1.10.1 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.10.1)
+
+- add missing condition for notifications on Linux
+
+# v1.10.0 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.10.0)
+
+- remove synchronous functions
+- refactor
+
+# v1.9.0 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.9.0)
+
+- add command to open `.apm` path
+- rename tree-view command
+
 # v1.8.6 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.8.6)
 
 - remove activation event
@@ -43,8 +79,8 @@
 
 # v1.5.0 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.5.0)
 
-* use `spawn` over `spawnSync`
-* update `devDependencies`
+- use `spawn` over `spawnSync`
+- update `devDependencies`
 
 # v1.4.1 [#](https://github.com/idleberg/atom-browse/releases/tag/v1.4.1)
 

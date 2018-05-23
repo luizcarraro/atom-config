@@ -1,3 +1,55 @@
+### 2.7.0 2018-01-04
+* Handle onDidChangeText changes for multicursors.
+
+### 2.6.0 2017-10-05
+* Add delete flow.
+* Improve on some settings.
+* Add new type of random colors setting.
+
+### 2.5.0 2017-09-11
+* Add possibility to disable exclamations letting `0` in `exclamationEvery` setting.
+* Add random per spawn color option.
+* Add `select-color` command with list to select color.
+* Add unregister* methods in service api.
+* Add `select-plugin` command with list to enable/disable plugins. 
+
+### 2.4.0 2017-08-16
+* Use ResizeObserver on scrollView to resize canvas.
+* Use `transform: translate()` on shake effect.
+* Fix typo in Flow settings.
+
+### 2.3.0 2017-08-14
+* Add setting to turn the multiplier on/off.
+* All command added to the context menu.
+* Use `will-change` for the text editor screen shake effect.
+* Avoid pointer events on combo element.
+* Fix bump effect on combo.
+
+### 2.2.0 2017-08-06
+* Add `getCurrentStreak` on combo api.
+* Fix `Activation Threshold` setting not rendering.
+* Add possibility to handle plugin events on canvas effects.
+* Fix not displaying exclamation on multipliers.
+
+### 2.1.0 2017-06-18
+* Quick fix for Atom 1.19 beta.
+
+### 2.0.0 2017-05-27
+* New service to register plugins, canvas effects and input flows.
+* Api to access the screen shake, audio player and the combo.
+* Events on input, pane change, add cursor, and combo streak.
+* Combo now supports multi levels (with multipliers), by default at 20, 50, 100, 200 and 500.
+* Combo shows the counter change.
+* Combo supports decrease and reset.
+* Particles manager util class to create a particle based effect.
+* Improve package activation performance with `requestIdleCallback`.
+* Non-blocking input by calling `requestIdleCallback`.
+* Commands to choose effect and flow from a list.
+* Flow from a user's file, for now `user-flow.coffee` (or .js) in your home dir.
+* Render only 1 each 3 frames.
+* Avoid calling configs each input or frame.
+* Fix issue when minimap is on the left.
+
 ### 1.4.0 2017-03-19
 * Some performance improvements
 * Fix rare bug with combo exclamations
@@ -63,7 +115,7 @@
 * Add better color detection to prevent getting gray particles when writing at the end of the line
 
 ### 0.6.0 2016-06-30
-* Code refactor, no user-facing changes. 
+* Code refactor, no user-facing changes.
 
 ### 0.5.2 2016-05-03
 * Properly dispose event listeners when disabling the plugin.

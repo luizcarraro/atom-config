@@ -12,6 +12,14 @@
           label: 'Open Packages Folder'
         }
         {
+          command: 'browse:.apm-folder'
+          label: 'Open .apm Folder'
+        }
+        {
+          command: 'browse:application-folder'
+          label: 'Open Application Folder'
+        }
+        {
           type: 'separator'
         }
         {
@@ -56,19 +64,19 @@
   ]
   '.platform-darwin .tree-view .full-menu': [
     {
-      command: 'browse:reveal-file-from-treeview'
+      command: 'browse:reveal-file-from-tree-view'
       label: 'Reveal in Finder'
     }
   ]
   '.platform-linux .tree-view .full-menu': [
     {
-      command: 'browse:reveal-file-from-treeview'
+      command: 'browse:reveal-file-from-tree-view'
       label: 'Reveal in file manager'
     }
   ]
   '.platform-win32 .tree-view .full-menu': [
     {
-      command: 'browse:reveal-file-from-treeview'
+      command: 'browse:reveal-file-from-tree-view'
       label: 'Reveal in Explorer'
     }
   ]
@@ -86,6 +94,10 @@ menu: [
           {
             command: 'browse:packages-folder'
             label: 'Open Packages Folder'
+          }
+          {
+            command: 'browse:.apm-folder'
+            label: 'Open .apm Folder'
           }
           {
             command: 'browse:application-folder'

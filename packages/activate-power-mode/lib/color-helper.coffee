@@ -1,5 +1,31 @@
+{CompositeDisposable} = require "atom"
+
 module.exports =
+  subscriptions: null
+  key: "activate-power-mode.particles.colours"
+  conf: []
   golden_ratio_conjugate: 0.618033988749895
+
+  init: ->
+    @initConfigSubscribers()
+    @initList()
+
+  disable: ->
+    @subscriptions?.dispose()
+    @colorList?.dispose()
+    @colorList = null
+
+  observe: (key) ->
+    @subscriptions.add atom.config.observe(
+      "#{@key}.#{key}", (value) =>
+        @conf[key] = value
+    )
+
+  initConfigSubscribers: ->
+    @subscriptions = new CompositeDisposable
+    @observe 'type'
+    @observe 'fixed'
+    @observe 'randomType'
 
   hsvToRgb: (h,s,v) -> # HSV to RGB algorithm, as per wikipedia
     c = v * s
@@ -14,28 +40,61 @@ module.exports =
     if 4<=h2<5 then return [x+m,m,c+m]
     if 5<=h2<6 then return [c+m,m,x+m]
 
-  getFixedColor: ->
-    c = @getConfig "fixed"
+  getFixedColorGenerator: ->
+    c = @conf['fixed']
+    color = "rgb(#{c.red},#{c.green},#{c.blue})"
 
-    "rgb(#{c.red},#{c.green},#{c.blue})"
-
-  getRandomGenerator: ->
-    seed = Math.random()
     loop
-      seed += @golden_ratio_conjugate
-      seed = seed - (seed//1)
-      rgb = @hsvToRgb(seed,1,1)
-      r = (rgb[0]*255)//1
-      g = (rgb[1]*255)//1
-      b = (rgb[2]*255)//1
-
-      yield "rgb(#{r},#{g},#{b})"
+      yield color
     return
 
-  getColorAtPosition: (editor, editorElement, screenPosition) ->
-    screenPosition = [screenPosition.row, screenPosition.column - 1]
-    bufferPosition = editor.bufferPositionForScreenPosition screenPosition
-    scope = editor.scopeDescriptorForBufferPosition bufferPosition
+  getRandomBrightColor: ->
+    @seed += @golden_ratio_conjugate
+    @seed = @seed - (@seed//1)
+    rgb = @hsvToRgb(@seed,1,1)
+    r = (rgb[0]*255)//1
+    g = (rgb[1]*255)//1
+    b = (rgb[2]*255)//1
+    "rgb(#{r},#{g},#{b})"
+
+  getRandomAllColor: ->
+    r = Math.floor(Math.random() * 256)
+    g = Math.floor(Math.random() * 256)
+    b = Math.floor(Math.random() * 256)
+    "rgb(#{r},#{g},#{b})"
+
+  getRandomGenerator: ->
+    if @conf['randomType'] == 'bright'
+      @seed = Math.random()
+
+      loop
+        yield @getRandomBrightColor()
+      return
+
+    else
+      loop
+        yield @getRandomAllColor()
+      return
+
+  getRandomSpawnGenerator: ->
+    if @conf['randomType'] == 'bright'
+      @seed = Math.random()
+      color = @getRandomBrightColor()
+    else
+      color = @getRandomAllColor()
+
+    loop
+      yield color
+    return
+
+  getColorAtCursorGenerator: (cursor, editorElement) ->
+    color = @getColorAtCursor cursor, editorElement
+    loop
+      yield color
+    return
+
+  getColorAtCursor: (cursor, editorElement) ->
+    scope = cursor.getScopeDescriptor()
     scope = scope.toString().replace(/\./g, '.syntax--')
 
     try
@@ -48,14 +107,26 @@ module.exports =
     else
       "rgb(255, 255, 255)"
 
-  getColor: (editor, editorElement, screenPosition) ->
-    colorType = @getConfig("type")
-    if (colorType == "random")
-      @getRandomGenerator()
-    else if colorType == "fixed"
-      @getFixedColor()
+  generateColors: (cursor, editorElement) ->
+    colorType = @conf['type']
+    if (colorType == 'random')
+      return @getRandomGenerator()
+    else if colorType == 'fixed'
+      @getFixedColorGenerator()
+    else if colorType == 'randomSpawn'
+      @getRandomSpawnGenerator()
     else
-      @getColorAtPosition editor, editorElement, screenPosition
+      @getColorAtCursorGenerator cursor, editorElement
 
-  getConfig: (config) ->
-    atom.config.get "activate-power-mode.particles.colours.#{config}"
+  selectColor: (code) ->
+    atom.config.set("#{@key}.type", code)
+
+  initList: ->
+    return if @colorList?
+
+    @colorList = require "./color-list"
+    @colorList.init this
+
+    @subscriptions.add atom.commands.add "atom-workspace",
+      "activate-power-mode:select-color": =>
+        @colorList.toggle()

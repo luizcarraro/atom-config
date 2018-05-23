@@ -1,6 +1,6 @@
 { name } = require "../package.json"
 
-module.exports = BrowsePackages =
+module.exports = Browse =
   config:
     fileManager:
       title: "File manager"
@@ -20,17 +20,29 @@ module.exports = BrowsePackages =
     @subscriptions = new CompositeDisposable
 
     # Register command that toggles this view
+    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:.apm-folder": => @apmFolder()
+    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:application-folder": => @appFolder()
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:configuration-folder": => @browseConfig()
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:packages-folder": => @browsePackages()
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:project-folders": => @browseProjects()
-    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:reveal-file": => @revealFile()
     @subscriptions.add atom.commands.add "atom-workspace", "#{name}:reveal-all-open-files": => @revealFiles()
-    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:reveal-file-from-treeview": => @revealFileFromTreeview()
-    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:application-folder": => @appFolder()
+    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:reveal-file": => @revealFile()
+    @subscriptions.add atom.commands.add "atom-workspace", "#{name}:reveal-file-from-tree-view": => @revealFileFromTreeview()
 
   deactivate: ->
     @subscriptions?.dispose()
     @subscriptions = null
+
+  apmFolder: ->
+    require("./ga").sendEvent name, "apm-folder"
+
+    { dirname, join } = require "path"
+
+    configFile = atom.config.getUserConfigPath()
+    configPath = dirname(configFile)
+    apmPath = join(configPath, '.apm')
+
+    @openFolder(apmPath) if apmPath
 
   appFolder: ->
     require("./ga").sendEvent name, "application-folder"
@@ -47,23 +59,15 @@ module.exports = BrowsePackages =
       else
         appFolder = processPath
 
-    @openFolder(appFolder)
+    @openFolder(appFolder) if appFolder
 
   browsePackages: ->
     require("./ga").sendEvent name, "packages-folder"
 
-    { accessSync, F_OK } = require "fs"
 
     packageDirs = atom.packages.getPackageDirPaths()
 
     for packageDir in packageDirs
-      # Does packages folder exist?
-      try
-        accessSync(packageDir, F_OK)
-      catch error
-        atom.notifications.addError(name, detail: error, dismissable: true)
-
-      # Open packages folder
       @openFolder(packageDir)
 
   revealFile: ->
@@ -101,7 +105,7 @@ module.exports = BrowsePackages =
     atom.notifications.addWarning("**#{name}**: No open files", dismissable: false)
 
   revealFileFromTreeview: ->
-    require("./ga").sendEvent name, "reveal-file-from-treeview"
+    require("./ga").sendEvent name, "reveal-file-from-tree-view"
 
     panes = atom.workspace.getPaneItems()
 
@@ -123,45 +127,25 @@ module.exports = BrowsePackages =
   browseProjects: ->
     require("./ga").sendEvent name, "project-folders"
 
-    { accessSync, F_OK } = require "fs"
 
-    projects = atom.project.getPaths()
-    return atom.notifications.addWarning("**#{name}**: No active project", dismissable: false) unless projects.length > 0
+    projectPaths = atom.project.getPaths()
+    return atom.notifications.addWarning("**#{name}**: No active project", dismissable: false) unless projectPaths.length > 0
 
-    for project in projects
+    for projectPath in projectPaths
       # Skip Atom dialogs
-      if project.startsWith('atom://')
-        continue
+      continue if projectPath.startsWith('atom://')
 
-      # Does project folder exist?
-      try
-        accessSync(project, F_OK)
-      catch
-        atom.notifications.addError(name, detail: error, dismissable: true)
-        continue
-
-      # Open project folder
-      @openFolder(project)
+      @openFolder(projectPath)
 
   browseConfig: ->
     require("./ga").sendEvent name, "configuration-folder"
 
-    { accessSync, F_OK } = require "fs"
     { dirname } = require "path"
 
     configFile = atom.config.getUserConfigPath()
     configPath = dirname(configFile)
 
-    if configPath
-      # Does config folder exist?
-      try
-        accessSync(configPath, F_OK)
-      catch error
-        atom.notifications.addError(name, detail: error, dismissable: true)
-        return
-
-      # Open config folder
-      @openFolder(configPath)
+    @openFolder(configPath) if configPath
 
   selectFile: (path) ->
     require("./ga").sendEvent name, "configuration-folder"
@@ -179,27 +163,31 @@ module.exports = BrowsePackages =
       when "win32"
         @spawnCmd "explorer", [ "/select,#{path}" ], basename(path), "Explorer"
       when "linux"
-        { showItemInFolder } = require "shell"
-        showItemInFolder(path)
-        atom.notifications.addInfo("**#{name}**: Opened `#{basename(path)}` in file manager", dismissable: false)
+        { shell } = require "electron"
+        shell.showItemInFolder(path)
+        atom.notifications.addInfo("**#{name}**: Opening `#{basename(path)}` in file manager", dismissable: false) if atom.config.get("#{name}.notify")
 
   openFolder: (path) ->
+    { access, F_OK } = require "fs"
     { basename } = require "path"
 
-    # Custom file manager
-    fileManager = atom.config.get("#{name}.fileManager")
-    return @spawnCmd fileManager, [ path ], basename(path), "file manager" if fileManager
+    access path, F_OK, (error) ->
+      return atom.notifications.addError(name, detail: error, dismissable: true) if error
 
-    # Default file manager
-    switch process.platform
-      when "darwin"
-        @spawnCmd "open", [ path ], basename(path), "Finder"
-      when "win32"
-        @spawnCmd "explorer", [ path ], basename(path), "Explorer"
-      when "linux"
-        { openItem } = require "shell"
-        openItem(path)
-        atom.notifications.addInfo("**#{name}**: Opened `#{basename(path)}` in file manager", dismissable: false)
+      # Custom file manager
+      fileManager = atom.config.get("#{name}.fileManager")
+      return Browse.spawnCmd fileManager, [ path ], basename(path), "file manager" if fileManager
+
+      # Default file manager
+      switch process.platform
+        when "darwin"
+          Browse.spawnCmd "open", [ path ], basename(path), "Finder"
+        when "win32"
+          Browse.spawnCmd "explorer", [ path ], basename(path), "Explorer"
+        when "linux"
+          { shell } = require "electron"
+          shell.openItem(path)
+          atom.notifications.addInfo("**#{name}**: Opening `#{basename(path)}` in file manager", dismissable: false) if atom.config.get("#{name}.notify")
 
   spawnCmd: (cmd, args, baseName, fileManager) ->
     { spawn } = require("child_process")
@@ -211,4 +199,4 @@ module.exports = BrowsePackages =
 
     open.on "close", ( errorCode ) ->
       if errorCode is 0 and atom.config.get("#{name}.notify")
-        atom.notifications.addInfo("**#{name}**: Opened `#{baseName}` in #{fileManager}", dismissable: false)
+        atom.notifications.addInfo("**#{name}**: Opening `#{baseName}` in #{fileManager}", dismissable: false)

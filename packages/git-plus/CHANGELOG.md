@@ -1,5 +1,31 @@
 ## Changelog
 
+### 7.10.1
+- Merge [#719](https://github.com/akonwi/git-plus/pull/719) to fix #681 and #710 (@Fryuni)
+- Merge [#728](https://github.com/akonwi/git-plus/pull/728) to fix #717 (@ccjmne)
+- Fix [#732](https://github.com/akonwi/git-plus/pull/732) (@ocoka)
+
+### 7.10.0
+- Introduces a new option to pull with the '--autostash' flag thanks to (@Fryuni)[#707](https://github.com/akonwi/git-plus/pull/707)
+- Changes misspelling of 'branch' in the submenu (@j4cobgarby)[#708](https://github.com/akonwi/git-plus/pull/708)
+
+### 7.9.3
+- Fixes [#677](https://github.com/akonwi/git-plus/pull/677)
+
+### 7.9.2
+- Fixes [#666](https://github.com/akonwi/git-plus/pull/666)
+
+### 7.9.1
+- Fixes [#663](https://github.com/akonwi/git-plus/pull/663)
+
+### 7.9.0
+- The output view above the status-bar has been incorporated into the docks of atom v1.17.0
+  - The timeout setting for this has also been removed since this is no longer just a notification
+
+### 7.8.1
+- Fixes git+ commands not showing up in tree-view context menu
+on atom v1.17.0 [#664](https://github.com/akonwi/git-plus/pull/664) (@pixilz)
+
 ### 7.8.0
 - Fixes [#654](https://github.com/akonwi/git-plus/issues/654)
 - Fixes [#655](https://github.com/akonwi/git-plus/issues/655)

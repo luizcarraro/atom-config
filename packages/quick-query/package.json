@@ -1,0 +1,105 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/tmp/d-118221-7237-1bwyr9n.npqcq2rzfr/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/tmp/d-118221-7237-1bwyr9n.npqcq2rzfr/package.tgz",
+        "spec": "/tmp/d-118221-7237-1bwyr9n.npqcq2rzfr/package.tgz",
+        "type": "local"
+      },
+      "/tmp/apm-install-dir-118221-7237-qkeqqb.sh68xb6gvi"
+    ]
+  ],
+  "_from": "../d-118221-7237-1bwyr9n.npqcq2rzfr/package.tgz",
+  "_id": "quick-query@0.12.4",
+  "_inCache": true,
+  "_location": "/quick-query",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/tmp/d-118221-7237-1bwyr9n.npqcq2rzfr/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/tmp/d-118221-7237-1bwyr9n.npqcq2rzfr/package.tgz",
+    "spec": "/tmp/d-118221-7237-1bwyr9n.npqcq2rzfr/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-118221-7237-1bwyr9n.npqcq2rzfr/package.tgz",
+  "_shasum": "85c621c56535b1dfcdb7727a037063be6c9ac204",
+  "_shrinkwrap": null,
+  "_spec": "/tmp/d-118221-7237-1bwyr9n.npqcq2rzfr/package.tgz",
+  "_where": "/tmp/apm-install-dir-118221-7237-qkeqqb.sh68xb6gvi",
+  "activationCommands": {
+    "atom-workspace": [
+      "quick-query:run",
+      "quick-query:new-editor",
+      "quick-query:toggle-browser",
+      "quick-query:new-connection"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/fabianfiorotto/quick-query/issues"
+  },
+  "consumedServices": {
+    "status-bar": {
+      "versions": {
+        "^1.0.0": "consumeStatusBar"
+      }
+    }
+  },
+  "dependencies": {
+    "atom-space-pen-views": "^2.0.3",
+    "json2csv": "3.2.0",
+    "mysql": "^2.10.2 ",
+    "pg": "^4.3.0"
+  },
+  "description": "Run sql queries",
+  "devDependencies": {},
+  "engines": {
+    "atom": ">=1.17.0 <2.0.0"
+  },
+  "homepage": "https://github.com/fabianfiorotto/quick-query#readme",
+  "keywords": [
+    "sql",
+    "query",
+    "database",
+    "mysql",
+    "postgres"
+  ],
+  "license": "MIT",
+  "main": "./lib/quick-query",
+  "name": "quick-query",
+  "optionalDependencies": {},
+  "providedServices": {
+    "quick-query-protocols": {
+      "description": "Add new protocols to quick-query",
+      "versions": {
+        "0.6.0": "provideConnectView"
+      }
+    },
+    "quick-query-browser": {
+      "description": "Access to connections",
+      "versions": {
+        "0.7.0": "provideBrowserView"
+      }
+    },
+    "autocomplete.provider": {
+      "versions": {
+        "2.0.0": "provideAutocomplete"
+      }
+    }
+  },
+  "readme": "# Quick query\n\nDo queries against your local databases quickly. By default it only supports MySQL and PostgreSQL.\n\n## Features\n- Visualize query results\n- Database browser\n- Data Editor\n- Multiple connections\n- Quick templates for alter/create/drop\n- Find table to select\n- Autocomplete integration\n\n## Other DBMSs\n - [SQL Server](https://atom.io/packages/quick-query-mssql)\n - [Sqlite](https://atom.io/packages/quick-query-sqlite)\n\n## Screenshot\n![](https://raw.githubusercontent.com/fabianfiorotto/quick-query/master/resources/screenshot.png)\n\n\n[![☕](https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg) *Buy me a coffee*](https://www.buymeacoffee.com/fabianfiorotto)\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabianfiorotto/quick-query.git"
+  },
+  "version": "0.12.4"
+}

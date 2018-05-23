@@ -1,4 +1,5 @@
-meta = require ("../package.json")
+meta = require "../package.json"
+Util = require "./util"
 PackageUpdater = null
 
 WARMUP_WAIT = 10 * 1000
@@ -19,9 +20,9 @@ module.exports =
       default: []
       order: 2
     intervalMinutes:
-      title: 'Update Interval'
+      title: "Update Interval"
       description: "Set the default update interval in minutes"
-      type: 'integer'
+      type: "integer"
       minimum: MINIMUM_AUTO_UPDATE_BLOCK_DURATION_MINUTES
       default: 6 * 60
       order: 3
@@ -37,11 +38,36 @@ module.exports =
       type: "boolean"
       default: true
       order: 5
+    notificationStyle:
+      title: "Notification Style"
+      description: "Specify a style for the notification popup (*Success=green*, *Info=blue*, *Warning=yellow*, and *Error=red*)"
+      type: "string"
+      enum: [
+        "Success"
+        "Info"
+        "Warning"
+        "Error"
+      ]
+      default: "Success"
+      order: 6
+    maximumPackageDetail:
+      title: "Maximum Package Detail"
+      description: "Specify the maximum number of package names displayed in the notification (minimum is 3)"
+      type: "number"
+      default: 5
+      minimum: 3
+      order: 7
+    debugMode:
+      title: "Debug Mode"
+      description: "Enable to output details in your console"
+      type: "boolean"
+      default: false
+      order: 8
 
   activate: (state) ->
     commands = {}
     commands["#{meta.name}:update-now"] = => @updatePackages(false)
-    @commandSubscription = atom.commands.add('atom-workspace', commands)
+    @commandSubscription = atom.commands.add("atom-workspace", commands)
 
     setTimeout =>
       @enableAutoUpdate()
@@ -60,7 +86,7 @@ module.exports =
     , @getAutoUpdateCheckInterval()
 
     @configSubscription = atom.config.onDidChange "#{meta.name}.intervalMinutes", ({newValue, oldValue}) =>
-      console.log "Changed update interval to #{newValue}" if atom.inDevMode()
+      console.log "Changed update interval to #{newValue}" if Util.getConfig("debugMode")
       @disableAutoUpdate()
       @enableAutoUpdate()
 
@@ -77,7 +103,7 @@ module.exports =
       @updatePackages()
 
   updatePackages: (isAutoUpdate = true) ->
-    PackageUpdater ?= require './package-updater'
+    PackageUpdater ?= require "./package-updater"
     PackageUpdater.updatePackages(isAutoUpdate)
     @saveLastUpdateTime()
 
@@ -99,6 +125,7 @@ module.exports =
       lastUpdateTime = localStorage.getItem("#{meta.name}.lastUpdateTime")
       parseInt(lastUpdateTime)
     catch
+      localStorage.setItem("#{meta.name}.lastUpdateTime", Date.now())
       null
 
   saveLastUpdateTime: ->
