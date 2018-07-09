@@ -10,6 +10,9 @@
     strictMatching: true
   autosave:
     enabled: true
+  blame:
+    dateFormat: "DD/MM/YY"
+    gutterFormat: "{date} - {author}"
   "conventional-changelog": {}
   core:
     closeDeletedFileTabs: true
@@ -23,7 +26,6 @@
       "atom-sublime-monokai-syntax"
     ]
   editor:
-    fontSize: 12
     invisibles: {}
     showIndentGuide: true
     softWrap: true

@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle serverless-dashboard",
+        "command": "serverless-dashboard:open-management-panel"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Serverless Dashboard",
+          "submenu": [
+            {
+              "label": "Open your serverless.yml",
+              "command": "serverless-dashboard:open-management-panel"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

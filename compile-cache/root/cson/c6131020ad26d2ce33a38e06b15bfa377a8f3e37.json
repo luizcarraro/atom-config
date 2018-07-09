@@ -1,0 +1,1 @@
+{"context-menu":{"atom-text-editor":[{"label":"Toggle block comment","command":"sublime-block-comment:toggle"}]},"menu":[{"label":"Packages","submenu":[{"label":"Sublime Block Comment","submenu":[{"label":"Toggle","command":"sublime-block-comment:toggle"}]}]}]}

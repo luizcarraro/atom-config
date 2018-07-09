@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "/tmp/d-118527-6629-5inz8a.14vaxuhaor/package.tgz",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "/tmp/d-118527-6629-5inz8a.14vaxuhaor/package.tgz",
+        "spec": "/tmp/d-118527-6629-5inz8a.14vaxuhaor/package.tgz",
+        "type": "local"
+      },
+      "/tmp/apm-install-dir-118527-6629-1xpyk0u.m1paksm7vi"
+    ]
+  ],
+  "_from": "../d-118527-6629-5inz8a.14vaxuhaor/package.tgz",
+  "_id": "serverless-dashboard@0.2.3",
+  "_inCache": true,
+  "_location": "/serverless-dashboard",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "/tmp/d-118527-6629-5inz8a.14vaxuhaor/package.tgz",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "/tmp/d-118527-6629-5inz8a.14vaxuhaor/package.tgz",
+    "spec": "/tmp/d-118527-6629-5inz8a.14vaxuhaor/package.tgz",
+    "type": "local"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "file:../d-118527-6629-5inz8a.14vaxuhaor/package.tgz",
+  "_shasum": "355591885a7aa6bfe477f4d71a93d9be62487843",
+  "_shrinkwrap": null,
+  "_spec": "/tmp/d-118527-6629-5inz8a.14vaxuhaor/package.tgz",
+  "_where": "/tmp/apm-install-dir-118527-6629-1xpyk0u.m1paksm7vi",
+  "activationCommands": {
+    "atom-workspace": "serverless-dashboard:open-management-panel"
+  },
+  "bugs": {
+    "url": "https://github.com/horike37/serverless-dashboard-for-atom/issues"
+  },
+  "dependencies": {
+    "core-decorators": "^0.20.0",
+    "etch": "^0.12.6",
+    "js-yaml": "^3.10.0",
+    "lodash": "^4.17.4",
+    "react": "^16.1.0"
+  },
+  "description": "This package allows you to deploy and manage your serverless service with Serverless Framework on the editor",
+  "devDependencies": {
+    "eslint": "^4.11.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/horike37/serverless-dashboard-for-atom#readme",
+  "keywords": [
+    "serverless",
+    "serverless-framework",
+    "serverless-architectures",
+    "aws-lambda",
+    "aws"
+  ],
+  "license": "MIT",
+  "main": "./lib/serverless-dashboard",
+  "name": "serverless-dashboard",
+  "optionalDependencies": {},
+  "readme": "# Serverless Dashboard For Atom Editor\nThis is a Atom editor package which allows you to deploy and manage your serverless service with [Serverless Framework](https://serverless.com/framework/) on [Atom](https://atom.io/).\nCurrently, this pakage has supported only AWS, but we will support multi providers in the future.\n\nThis project is inspired by [Serverless Dashboard](https://github.com/serverless/dashboard)\n\n<img src=\"https://raw.githubusercontent.com/horike37/serverless-dashboard-for-atom/master/screenshot.gif\" />\n\n## Installation\n### Preparation\nInstall [Serverless Framework](https://serverless.com/framework/)\n\n ```sh\n npm install -g serverless\n ```\n    \n### Command Line\n\n1. Install [Atom](https://atom.io)\n2. In the terminal, install the package via apm:\n\n    ```sh\n    apm install serverless-dashboard\n    ```\n\n### GUI\n\n1. Install [Atom](https://atom.io)\n1. Launch Atom\n1. Open Settings View using <kbd>Cmd+,</kbd> on macOS or <kbd>Ctrl+,</kbd> on other platforms\n1. Click the Install tab on the left side\n1. Enter `serverless-dashboard` in the search box and press <kbd>Enter</kbd>\n1. Click the \"Install\" button that appears\n\n## How to use\n\n### Launch Dashboard\n1. Open Packages menu\n1. Click `Serverless Dashboard > Open your serverless.yml`\n1. Specify your serverless.yml\n\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/horike37/serverless-dashboard-for-atom.git"
+  },
+  "scripts": {
+    "lint": "eslint . --cache"
+  },
+  "version": "0.2.3"
+}

@@ -1,81 +1,29 @@
 {
   "info": {
     "version": "1.0.15",
-    "updated": "2018-05-23T14:07:46.637Z"
+    "updated": "2018-07-02T17:02:56.966Z"
   },
   "root": [
     {
       "type": "group",
-      "name": "Nela",
+      "name": "TALENTRH",
       "sortBy": "position",
-      "icon": "icon-organization",
+      "icon": "",
       "color": "",
       "expanded": true,
       "list": [
         {
           "type": "project",
-          "name": "portal-talentrh-api",
+          "name": "AVD",
           "icon": "",
           "color": "",
           "devMode": false,
           "config": {},
           "paths": [
-            "/home/luiz.carraro/Projetos/portal-talentrh-api"
+            "/home/luiz.carraro/Projetos/avd-talentrh",
+            "/home/luiz.carraro/Projetos/avd-talentrh-api"
           ]
         },
-        {
-          "type": "project",
-          "name": "portal-talentrh",
-          "icon": "",
-          "color": "",
-          "devMode": false,
-          "config": {},
-          "paths": [
-            "/home/luiz.carraro/Projetos/portal-talentrh"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "name": "Agenda",
-      "sortBy": "alphabetically",
-      "icon": "icon-calendar",
-      "color": "",
-      "expanded": false,
-      "list": [
-        {
-          "type": "project",
-          "name": "agenda-talentrh",
-          "icon": "",
-          "color": "",
-          "devMode": false,
-          "config": {},
-          "paths": [
-            "/home/luiz.carraro/Projetos/agenda-talentrh"
-          ]
-        },
-        {
-          "type": "project",
-          "name": "agenda-talentrh-api",
-          "icon": "",
-          "color": "",
-          "devMode": false,
-          "config": {},
-          "paths": [
-            "/home/luiz.carraro/Projetos/agenda-talentrh-api"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "name": "Projetos",
-      "sortBy": "alphabetically",
-      "icon": "",
-      "color": "",
-      "expanded": false,
-      "list": [
         {
           "type": "project",
           "name": "gestor-projetos",
@@ -89,13 +37,84 @@
         },
         {
           "type": "project",
-          "name": "gestor-projetos-api",
+          "name": "AGENDA",
           "icon": "",
           "color": "",
           "devMode": false,
           "config": {},
           "paths": [
+            "/home/luiz.carraro/Projetos/agenda-talentrh"
+          ]
+        },
+        {
+          "type": "project",
+          "name": "NELA",
+          "icon": "",
+          "color": "",
+          "devMode": false,
+          "config": {},
+          "paths": [
+            "/home/luiz.carraro/Projetos/portal-talentrh-api",
+            "/home/luiz.carraro/Projetos/portal-talentrh",
+            "/home/luiz.carraro/Projetos/account-talentrh",
+            "/home/luiz.carraro/Projetos/talentrh-components"
+          ]
+        },
+        {
+          "type": "project",
+          "name": "gestor-projetos",
+          "icon": "",
+          "color": "",
+          "devMode": false,
+          "config": {},
+          "paths": [
+            "/home/luiz.carraro/Projetos/gestor-projetos",
             "/home/luiz.carraro/Projetos/gestor-projetos-api"
+          ]
+        },
+        {
+          "type": "project",
+          "name": "CONTA",
+          "icon": "",
+          "color": "",
+          "devMode": false,
+          "config": {},
+          "paths": [
+            "/home/luiz.carraro/Projetos/account-talentrh",
+            "/home/luiz.carraro/Projetos/account-talentrh-api"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "project",
+      "name": "PESQUISA",
+      "icon": "icon-search-save",
+      "color": "",
+      "devMode": false,
+      "config": {},
+      "paths": [
+        "/home/luiz.carraro/Projetos/pesquisa-talentrh",
+        "/home/luiz.carraro/Projetos/pesquisa-talentrh-api"
+      ]
+    },
+    {
+      "type": "group",
+      "name": "Módulos",
+      "sortBy": "alphabetically",
+      "icon": "icon-file-submodule",
+      "color": "",
+      "expanded": true,
+      "list": [
+        {
+          "type": "project",
+          "name": "sails-ember-rest",
+          "icon": "",
+          "color": "",
+          "devMode": false,
+          "config": {},
+          "paths": [
+            "/home/luiz.carraro/Projetos/sails-ember-rest"
           ]
         }
       ]
